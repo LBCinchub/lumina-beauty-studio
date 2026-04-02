@@ -81,6 +81,20 @@ export default function Home() {
       <div className="relative max-w-xl mx-auto px-5 py-10 sm:py-16">
         <Header currentStep={step} />
 
+        {step === 0 && (
+          <div className="flex flex-wrap gap-2 justify-center mb-6">
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/60 border border-border text-xs font-body text-muted-foreground backdrop-blur-sm">
+              ◎ Accepts Solana
+            </span>
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/60 border border-border text-xs font-body text-muted-foreground backdrop-blur-sm">
+              🏡 We Come To You
+            </span>
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/60 border border-border text-xs font-body text-muted-foreground backdrop-blur-sm">
+              📍 Ottawa & Gatineau Only
+            </span>
+          </div>
+        )}
+
         <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-6 sm:p-8">
           <AnimatePresence mode="wait">
             {step === 0 && (
