@@ -7,7 +7,7 @@ import { base44 } from "@/api/base44Client";
 const SALON_INFO = {
   name: "LBC Beauty Studio",
   address: "123 Beauty Blvd, Suite 5, Your City",
-  solana_wallet: "YourSolanaWalletAddressHere",
+  solana_wallet: "2SYh5UjyGEVwCMTQrY5LJrGRfEAmU9MqXECRrAMsNK34",
   etransfer_email: "pay@lbcbeauty.com",
   deposit_amount: 20,
 };
@@ -243,7 +243,7 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
                         </button>
                       </div>
                       <p className="text-xs text-muted-foreground font-body">
-                        ⚠️ Screenshot your transaction and bring it to your appointment
+                        📝 Add your full name in the transaction memo/note to confirm your payment. Screenshot your transaction and bring it to your appointment.
                       </p>
                     </motion.div>
                   )}
