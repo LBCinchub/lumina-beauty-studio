@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Copy, Check, Calendar, User, Mail, Phone, MapPin, Sparkles, CheckCircle } from "lucide-react";
+import { X, Copy, Check, Calendar, User, Mail, Phone, MapPin, Sparkles, CheckCircle, Home } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 
 // ── CONFIGURE YOUR DETAILS HERE ──────────────────────────────
 const SALON_INFO = {
-  name: "LBC Beauty Studio",
-  address: "123 Beauty Blvd, Suite 5, Your City",
+  name: "Lumina Beauty — Mobile Service",
   solana_wallet: "2SYh5UjyGEVwCMTQrY5LJrGRfEAmU9MqXECRrAMsNK34",
   etransfer_email: "pay@lbcbeauty.com",
   deposit_amount: 20,
@@ -19,7 +18,7 @@ const TIME_SLOTS = [
 ];
 
 export default function BookingModal({ isOpen, onClose, result, data }) {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", date: "", time: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", address: "", date: "", time: "" });
   const [paymentMethod, setPaymentMethod] = useState(null);
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -31,7 +30,7 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const isFormValid = form.name && form.email && form.date && form.time && paymentMethod;
+  const isFormValid = form.name && form.email && form.address && form.date && form.time && paymentMethod;
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -39,6 +38,7 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
       client_name: form.name,
       client_email: form.email,
       client_phone: form.phone,
+      client_address: form.address,
       preferred_date: form.date,
       preferred_time: form.time,
       service: data.service,
@@ -77,9 +77,9 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
           {/* Header */}
           <div className="sticky top-0 bg-card border-b border-border p-5 flex items-center justify-between z-10">
             <div>
-              <h2 className="font-display font-bold text-lg text-foreground">Book Your Appointment</h2>
+              <h2 className="font-display font-bold text-lg text-foreground">Book Your In-Home Appointment</h2>
               <p className="text-xs text-muted-foreground font-body mt-0.5">
-                ${SALON_INFO.deposit_amount} deposit required to secure your spot
+                We come to you ✨ — ${SALON_INFO.deposit_amount} deposit to secure your spot
               </p>
             </div>
             <button onClick={onClose} className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center hover:bg-muted transition-colors">
@@ -106,7 +106,7 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
                   <MapPin size={14} className="text-primary" />
                   <span className="text-xs font-semibold text-foreground font-body">{SALON_INFO.name}</span>
                 </div>
-                <p className="text-xs text-muted-foreground font-body">{SALON_INFO.address}</p>
+                <p className="text-xs text-muted-foreground font-body">📍 {form.address}</p>
                 <div className="mt-3 pt-3 border-t border-border">
                   <p className="text-xs text-muted-foreground font-body">
                     📅 {form.date} at {form.time}
@@ -129,12 +129,12 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
                 </div>
               </div>
 
-              {/* Salon Address */}
+              {/* Mobile Service Banner */}
               <div className="flex gap-3 p-4 rounded-xl bg-primary/5 border border-primary/20">
-                <MapPin size={16} className="text-primary flex-shrink-0 mt-0.5" />
+                <Home size={16} className="text-primary flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-semibold text-foreground font-body">{SALON_INFO.name}</p>
-                  <p className="text-xs text-muted-foreground font-body mt-0.5">{SALON_INFO.address}</p>
+                  <p className="text-sm font-semibold text-foreground font-body">We Come To You 🏡</p>
+                  <p className="text-xs text-muted-foreground font-body mt-0.5">Enter your address below and we'll travel to your home or preferred location anywhere in Ottawa.</p>
                 </div>
               </div>
 
@@ -145,6 +145,7 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
                   { IconComp: User, placeholder: "Full Name *", key: "name", type: "text" },
                   { IconComp: Mail, placeholder: "Email Address *", key: "email", type: "email" },
                   { IconComp: Phone, placeholder: "Phone Number", key: "phone", type: "tel" },
+                  { IconComp: MapPin, placeholder: "Your Address (Street, City) *", key: "address", type: "text" },
                 ].map(({ IconComp, placeholder, key, type }) => (
                   <div key={key} className="flex items-center gap-3 px-4 py-3 rounded-xl bg-secondary/50 border border-border focus-within:border-primary/50 transition-colors">
                     <IconComp size={15} className="text-muted-foreground" />
