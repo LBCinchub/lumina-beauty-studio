@@ -6,9 +6,11 @@ import { base44 } from "@/api/base44Client";
 // ── CONFIGURE YOUR DETAILS HERE ──────────────────────────────
 const SALON_INFO = {
   name: "LBC Beauty — Mobile Service",
+  phone: "(263) 566-0785",
   solana_wallet: "2SYh5UjyGEVwCMTQrY5LJrGRfEAmU9MqXECRrAMsNK34",
   etransfer_email: "pay@lbcbeauty.com",
   deposit_amount: 20,
+  service_area: "Ottawa & Gatineau",
 };
 // ─────────────────────────────────────────────────────────────
 
@@ -107,6 +109,7 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
                   <span className="text-xs font-semibold text-foreground font-body">{SALON_INFO.name}</span>
                 </div>
                 <p className="text-xs text-muted-foreground font-body">📍 {form.address}</p>
+                <p className="text-xs text-muted-foreground font-body">📞 {SALON_INFO.phone}</p>
                 <div className="mt-3 pt-3 border-t border-border">
                   <p className="text-xs text-muted-foreground font-body">
                     📅 {form.date} at {form.time}
@@ -134,7 +137,7 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
                 <Home size={16} className="text-primary flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm font-semibold text-foreground font-body">We Come To You 🏡</p>
-                  <p className="text-xs text-muted-foreground font-body mt-0.5">Enter your address below and we'll travel to your home or preferred location anywhere in Ottawa.</p>
+                  <p className="text-xs text-muted-foreground font-body mt-0.5">Enter your address below and we'll travel to your home or preferred location in {SALON_INFO.service_area}.</p>
                 </div>
               </div>
 
@@ -222,7 +225,6 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
                   </button>
                 </div>
 
-                {/* Payment Details */}
                 <AnimatePresence>
                   {paymentMethod === "solana" && (
                     <motion.div
@@ -295,5 +297,7 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
         </motion.div>
       </motion.div>
     </AnimatePresence>
+  );
+}
   );
 }
