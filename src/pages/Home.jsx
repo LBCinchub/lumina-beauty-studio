@@ -83,13 +83,13 @@ export default function Home() {
 
         {step === 0 && (
           <div className="flex flex-wrap gap-2 justify-center mb-6">
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/60 border border-border text-xs font-body text-muted-foreground backdrop-blur-sm">
+            <span className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 text-xs font-semibold font-body text-purple-300 backdrop-blur-sm shadow-sm">
               ◎ Accepts Solana
             </span>
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/60 border border-border text-xs font-body text-muted-foreground backdrop-blur-sm">
+            <span className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/30 text-xs font-semibold font-body text-pink-300 backdrop-blur-sm shadow-sm">
               🏡 We Come To You
             </span>
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card/60 border border-border text-xs font-body text-muted-foreground backdrop-blur-sm">
+            <span className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-rose-500/10 border border-rose-500/30 text-xs font-semibold font-body text-rose-300 backdrop-blur-sm shadow-sm">
               📍 Ottawa & Gatineau Only
             </span>
           </div>
