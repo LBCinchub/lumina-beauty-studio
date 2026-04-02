@@ -1,0 +1,87 @@
+{
+  "name": "Booking",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string",
+      "title": "Client Name"
+    },
+    "client_email": {
+      "type": "string",
+      "title": "Email"
+    },
+    "client_phone": {
+      "type": "string",
+      "title": "Phone"
+    },
+    "preferred_date": {
+      "type": "string",
+      "title": "Preferred Date"
+    },
+    "preferred_time": {
+      "type": "string",
+      "title": "Preferred Time"
+    },
+    "service": {
+      "type": "string",
+      "title": "Service"
+    },
+    "look_name": {
+      "type": "string",
+      "title": "Look Name"
+    },
+    "look_description": {
+      "type": "string",
+      "title": "Look Description"
+    },
+    "look_image": {
+      "type": "string",
+      "title": "Look Image URL"
+    },
+    "occasion": {
+      "type": "string",
+      "title": "Occasion"
+    },
+    "mood": {
+      "type": "string",
+      "title": "Mood"
+    },
+    "intensity": {
+      "type": "string",
+      "title": "Intensity"
+    },
+    "payment_method": {
+      "type": "string",
+      "title": "Payment Method",
+      "enum": [
+        "solana",
+        "etransfer"
+      ]
+    },
+    "deposit_paid": {
+      "type": "boolean",
+      "title": "Deposit Paid",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "title": "Status",
+      "enum": [
+        "pending",
+        "confirmed",
+        "completed",
+        "cancelled"
+      ],
+      "default": "pending"
+    },
+    "notes": {
+      "type": "string",
+      "title": "Notes"
+    }
+  },
+  "required": [
+    "client_name",
+    "client_email",
+    "service"
+  ]
+}

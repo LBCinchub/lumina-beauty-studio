@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, RotateCcw, Sparkles, Heart, Share2, Download } from "lucide-react";
+import { ChevronLeft, RotateCcw, Sparkles, CalendarPlus } from "lucide-react";
 import { base44 } from "@/api/base44Client";
+import BookingModal from "./BookingModal";
 
 const SERVICE_LABELS = {
   nails: "Nails",
@@ -14,6 +15,7 @@ export default function StepThree({ data, onBack, onRestart }) {
   const [result, setResult] = useState(null);
   const [generatedImage, setGeneratedImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
     generateRecommendation();
@@ -201,6 +203,25 @@ Provide a personalized beauty recommendation with:
       </div>
 
       {/* Action Buttons */}
+      {/* Book Appointment CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="p-5 rounded-2xl bg-gradient-to-br from-primary/20 to-pink-500/10 border border-primary/30 text-center"
+      >
+        <Sparkles size={20} className="text-primary mx-auto mb-2" />
+        <p className="text-sm font-display font-semibold text-foreground mb-1">Love this look?</p>
+        <p className="text-xs text-muted-foreground font-body mb-4">Book your appointment & secure your spot with a $20 deposit</p>
+        <button
+          onClick={() => setBookingOpen(true)}
+          className="w-full py-3.5 bg-gradient-to-r from-primary to-pink-500 text-white font-bold font-body rounded-xl flex items-center justify-center gap-2 transition-all hover:opacity-90 shadow-lg shadow-primary/25"
+        >
+          <CalendarPlus size={18} />
+          Save Look & Book Appointment
+        </button>
+      </motion.div>
+
       <div className="flex gap-3 pt-2">
         <button
           onClick={onBack}
@@ -217,6 +238,13 @@ Provide a personalized beauty recommendation with:
           Start Over
         </button>
       </div>
+
+      <BookingModal
+        isOpen={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+        result={result}
+        data={data}
+      />
     </motion.div>
   );
 }
