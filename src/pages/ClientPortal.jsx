@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Calendar, History, LogOut, Loader2 } from "lucide-react";
+import { Sparkles, Calendar, History, LogOut, Loader2, Images } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 import AppointmentCard from "../components/portal/AppointmentCard";
 import LookHistory from "../components/portal/LookHistory";
+import LookGallery from "../components/portal/LookGallery";
+import BookingModal from "../components/beauty/BookingModal";
 
 const TABS = [
   { id: "upcoming", label: "Appointments", icon: Calendar },
+  { id: "gallery", label: "Gallery", icon: Images },
   { id: "history", label: "Look History", icon: History },
 ];
 
@@ -15,6 +18,7 @@ export default function ClientPortal() {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState("upcoming");
+  const [rebookBooking, setRebookBooking] = useState(null);
 
   useEffect(() => {
     init();
@@ -132,10 +136,31 @@ export default function ClientPortal() {
           </motion.div>
         )}
 
+        {tab === "gallery" && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <LookGallery bookings={bookings} onRebook={(b) => setRebookBooking(b)} />
+          </motion.div>
+        )}
+
         {tab === "history" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <LookHistory bookings={past} />
           </motion.div>
+        )}
+
+        {rebookBooking && (
+          <BookingModal
+            isOpen={true}
+            onClose={() => setRebookBooking(null)}
+            result={{ look_name: rebookBooking.look_name, description: rebookBooking.look_description }}
+            data={{
+              service: rebookBooking.service,
+              occasion: rebookBooking.occasion || "",
+              mood: rebookBooking.mood || "",
+              intensity: rebookBooking.intensity || "",
+              notes: rebookBooking.notes || "",
+            }}
+          />
         )}
 
         <div className="mt-10 text-center">
