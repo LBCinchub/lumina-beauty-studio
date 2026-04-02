@@ -113,7 +113,7 @@ export default function Home() {
 
         <div className="mt-8 text-center">
           <p className="text-xs text-muted-foreground/50 font-body">
-            Powered by Lumina AI · Beauty Hub
+            Powered by LBC.NETWORK
           </p>
         </div>
       </div>
