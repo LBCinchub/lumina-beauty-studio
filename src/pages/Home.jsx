@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { base44 } from "@/api/base44Client";
+import { Shield } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import Header from "../components/beauty/Header";
 import StepOne from "../components/beauty/StepOne";
@@ -19,6 +21,11 @@ const INITIAL_DATA = {
 export default function Home() {
   const [step, setStep] = useState(0);
   const [data, setData] = useState(INITIAL_DATA);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    base44.auth.me().then(setUser).catch(() => {});
+  }, []);
 
   const restart = () => {
     setStep(0);
@@ -39,6 +46,36 @@ export default function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-pink-500/5 rounded-full blur-3xl" />
         <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-purple-500/3 rounded-full blur-3xl" />
+      </div>
+
+      {/* Admin / Portal top-right */}
+      <div className="fixed top-4 right-4 z-20 flex items-center gap-2">
+        {user ? (
+          user.role === "admin" ? (
+            <a
+              href="/admin"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-card/80 border border-border backdrop-blur-sm text-xs font-body text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Shield size={13} className="text-primary" />
+              Admin
+            </a>
+          ) : (
+            <a
+              href="/portal"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-card/80 border border-border backdrop-blur-sm text-xs font-body text-muted-foreground hover:text-foreground transition-colors"
+            >
+              My Portal
+            </a>
+          )
+        ) : (
+          <button
+            onClick={() => base44.auth.redirectToLogin()}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-card/80 border border-border backdrop-blur-sm text-xs font-body text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Shield size={13} className="text-primary" />
+            Admin Login
+          </button>
+        )}
       </div>
 
       <div className="relative max-w-xl mx-auto px-5 py-10 sm:py-16">
