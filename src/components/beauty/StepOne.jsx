@@ -9,21 +9,21 @@ const SERVICES = [
     label: "Nails",
     emoji: "💅",
     description: "Manicure, gel, nail art & extensions",
-    image: "/__generating__/img_b6d670f00a0c.png",
+    image: "https://media.base44.com/images/public/69cdcb4ca203bc12233e8c04/5ef88c396_generated_09b532af.png",
   },
   {
     id: "skincare",
     label: "Skin Care",
     emoji: "✨",
     description: "Facials, treatments & glow-ups",
-    image: "/__generating__/img_5e138831dbed.png",
+    image: "https://media.base44.com/images/public/69cdcb4ca203bc12233e8c04/8dd0ae921_generated_56f04ffc.png",
   },
   {
     id: "lashes",
     label: "Lashes",
     emoji: "👁️",
     description: "Extensions, lifts & tinting",
-    image: "/__generating__/img_7fdbae4e18e6.png",
+    image: "https://media.base44.com/images/public/69cdcb4ca203bc12233e8c04/5c91eb348_generated_2cac25b3.png",
   },
 ];
 
