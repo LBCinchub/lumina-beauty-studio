@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import ServiceCard from "./ServiceCard";
+import PriceSummary from "./PriceSummary";
 
 const SERVICES = [
   {
@@ -147,6 +148,11 @@ export default function StepOne({ data, onChange, onNext }) {
           ))}
         </div>
       </div>
+
+      {/* Price Summary */}
+      {data.service && data.intensity && (
+        <PriceSummary service={data.service} intensity={data.intensity} styles={[]} />
+      )}
 
       {/* Continue Button */}
       <button

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronRight, ChevronLeft, Upload, Image, X } from "lucide-react";
 import { base44 } from "@/api/base44Client";
+import PriceSummary from "./PriceSummary";
 
 const SERVICE_STYLES = {
   nails: [
@@ -167,6 +168,9 @@ export default function StepTwo({ data, onChange, onNext, onBack }) {
           className="w-full px-4 py-3 rounded-xl bg-card border border-border text-foreground placeholder-muted-foreground/60 outline-none focus:border-primary/60 font-body text-sm resize-none"
         />
       </div>
+
+      {/* Price Summary */}
+      <PriceSummary service={data.service} intensity={data.intensity} styles={data.styles || []} showDeposit />
 
       {/* Buttons */}
       <div className="flex gap-3">
