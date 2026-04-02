@@ -299,5 +299,3 @@ export default function BookingModal({ isOpen, onClose, result, data }) {
     </AnimatePresence>
   );
 }
-  );
-}
