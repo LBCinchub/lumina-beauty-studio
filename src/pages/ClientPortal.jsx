@@ -6,6 +6,7 @@ import AppointmentCard from "../components/portal/AppointmentCard";
 import LookHistory from "../components/portal/LookHistory";
 import LookGallery from "../components/portal/LookGallery";
 import BookingModal from "../components/beauty/BookingModal";
+import LoyaltyCard from "../components/portal/LoyaltyCard";
 
 const TABS = [
   { id: "upcoming", label: "Appointments", icon: Calendar },
@@ -84,21 +85,10 @@ export default function ClientPortal() {
           </button>
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          {[
-            { label: "Total Bookings", value: bookings.length },
-            { label: "Upcoming", value: upcoming.length },
-            { label: "Looks Saved", value: bookings.filter((b) => b.look_name).length },
-          ].map((stat) => (
-            <div key={stat.label} className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-3 text-center">
-              <p className="text-2xl font-display font-bold text-primary">{stat.value}</p>
-              <p className="text-xs text-muted-foreground font-body mt-0.5">{stat.label}</p>
-            </div>
-          ))}
-        </div>
+        {/* Loyalty Card */}
+        <LoyaltyCard bookings={bookings} />
 
-        {/* Tabs */}
+        {/* Stats */}
         <div className="flex gap-1 bg-secondary/50 border border-border rounded-xl p-1 mb-6">
           {TABS.map((t) => {
             const Icon = t.icon;
