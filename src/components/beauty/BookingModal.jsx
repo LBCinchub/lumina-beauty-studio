@@ -5,7 +5,7 @@ import { base44 } from "@/api/base44Client";
 
 // ── CONFIGURE YOUR DETAILS HERE ──────────────────────────────
 const SALON_INFO = {
-  name: "Lumina Beauty — Mobile Service",
+  name: "LBC Beauty — Mobile Service",
   solana_wallet: "2SYh5UjyGEVwCMTQrY5LJrGRfEAmU9MqXECRrAMsNK34",
   etransfer_email: "pay@lbcbeauty.com",
   deposit_amount: 20,

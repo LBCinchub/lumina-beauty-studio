@@ -13,10 +13,10 @@ export default function Header({ currentStep }) {
         </div>
         <div>
           <h1 className="text-2xl font-display font-bold tracking-tight text-foreground">
-            Lumina AI
+            LBC Beauty
           </h1>
           <p className="text-sm text-muted-foreground font-body tracking-wide">
-            Beauty Consultant — Nails · Skin · Lashes
+            Lumina Beauty Consultant — Nails · Skin · Lashes
           </p>
         </div>
       </div>
