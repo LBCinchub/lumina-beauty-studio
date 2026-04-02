@@ -54,13 +54,16 @@ export const STYLE_ADD_ONS = {
   },
 };
 
-export function calculatePrice(service, intensity, styles = []) {
+export const CUSTOM_NOTES_FEE = 15;
+
+export function calculatePrice(service, intensity, styles = [], hasCustomNotes = false) {
   if (!service || !intensity) return null;
 
   const base = BASE_PRICES[service]?.[intensity] ?? 0;
   const addOns = styles.reduce((sum, style) => {
     return sum + (STYLE_ADD_ONS[service]?.[style] ?? 0);
   }, 0);
+  const notesFee = hasCustomNotes ? CUSTOM_NOTES_FEE : 0;
 
   const breakdown = [];
   if (base) {
@@ -70,11 +73,15 @@ export function calculatePrice(service, intensity, styles = []) {
     const price = STYLE_ADD_ONS[service]?.[style];
     if (price) breakdown.push({ label: style, price });
   });
+  if (hasCustomNotes) {
+    breakdown.push({ label: "Custom Styling Request", price: CUSTOM_NOTES_FEE });
+  }
 
   return {
     base,
     addOns,
-    total: base + addOns,
+    notesFee,
+    total: base + addOns + notesFee,
     breakdown,
   };
 }

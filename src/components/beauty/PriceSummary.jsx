@@ -2,8 +2,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { DollarSign, Info } from "lucide-react";
 import { calculatePrice } from "../../utils/pricing";
 
-export default function PriceSummary({ service, intensity, styles = [], showDeposit = false }) {
-  const pricing = calculatePrice(service, intensity, styles);
+export default function PriceSummary({ service, intensity, styles = [], showDeposit = false, hasCustomNotes = false }) {
+  const pricing = calculatePrice(service, intensity, styles, hasCustomNotes);
 
   if (!pricing) return null;
 

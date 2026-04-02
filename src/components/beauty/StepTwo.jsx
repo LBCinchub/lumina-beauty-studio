@@ -170,7 +170,7 @@ export default function StepTwo({ data, onChange, onNext, onBack }) {
       </div>
 
       {/* Price Summary */}
-      <PriceSummary service={data.service} intensity={data.intensity} styles={data.styles || []} showDeposit />
+      <PriceSummary service={data.service} intensity={data.intensity} styles={data.styles || []} showDeposit hasCustomNotes={!!(data.notes && data.notes.trim())} />
 
       {/* Buttons */}
       <div className="flex gap-3">
